@@ -3,6 +3,7 @@ package net.porodnov.simpletasker.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "todo_entity")
 public class TodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

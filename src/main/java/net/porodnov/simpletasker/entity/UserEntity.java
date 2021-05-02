@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-
+@Table(name = "user_entity")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,8 +12,8 @@ public class UserEntity {
     private String username;
     private String password;
 
-   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-   private List<TodoEntity> todos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<TodoEntity> todos;
 
     public UserEntity() {
     }

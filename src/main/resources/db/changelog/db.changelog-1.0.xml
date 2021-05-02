@@ -38,7 +38,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="varchar(250)">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="user_entity_id" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_user_entity_todo_entity" references="user_entity(id)"/>
