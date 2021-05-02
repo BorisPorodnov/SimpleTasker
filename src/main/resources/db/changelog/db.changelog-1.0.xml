@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet author="porodnov.boris" id="1.0.0">
+        <createSequence sequenceName="user_entity_id_seq" dataType="bigint" incrementBy="1" maxValue="10000"
+                        minValue="1"
+                        startValue="100"/>
+        <createSequence sequenceName="todo_entity_id_seq" dataType="bigint" incrementBy="1" maxValue="10000"
+                        minValue="1"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet author="porodnov.boris" id="1.0.1">
+        <createTable tableName="user_entity">
+            <column name="id" type="bigint" valueSequenceNext="nextval('user_entity_id_seq')">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_id_user_entity"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="porodnov.boris" id="1.0.2">
+        <createTable tableName="todo_entity">
+            <column name="id" type="bigint" valueSequenceNext="nextval('todo_entity_id_seq')">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_id_todo_entity"/>
+            </column>
+            <column name="title" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(250)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_entity_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_entity_todo_entity" references="user_entity(id)"/>
+            </column>
+            <column name="completed" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

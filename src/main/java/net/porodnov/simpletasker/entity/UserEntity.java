@@ -1,18 +1,19 @@
 package net.porodnov.simpletasker.entity;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "user_entity")
+
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String password;
 
-   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-   // private List<TodoEntity> todos;
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+   private List<TodoEntity> todos;
 
     public UserEntity() {
     }
@@ -21,13 +22,13 @@ public class UserEntity {
         return id;
     }
 
- // public List<TodoEntity> getTodos() {
- //     return todos;
- // }
+    public List<TodoEntity> getTodos() {
+        return todos;
+    }
 
- // public void setTodos(List<TodoEntity> todos) {
- //     this.todos = todos;
- // }
+    public void setTodos(List<TodoEntity> todos) {
+        this.todos = todos;
+    }
 
     public void setId(Long id) {
         this.id = id;

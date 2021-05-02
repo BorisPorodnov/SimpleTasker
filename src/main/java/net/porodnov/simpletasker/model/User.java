@@ -2,19 +2,32 @@ package net.porodnov.simpletasker.model;
 
 import net.porodnov.simpletasker.entity.UserEntity;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class User {
 
     private Long id;
-    private String name;
+    private String username;
+    private List<Todo> todos;
 
-    public static User toModel(UserEntity userEntity) {
+    public static User toModel(UserEntity entity) {
         User model = new User();
-        model.setId(userEntity.getId());
-        model.setName(userEntity.getUsername());
+        model.setId(entity.getId());
+        model.setUsername(entity.getUsername());
+        model.setTodos(entity.getTodos().stream().map(Todo::toModel).collect(Collectors.toList()));
         return model;
     }
 
     public User() {
+    }
+
+    public List<Todo> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<Todo> todos) {
+        this.todos = todos;
     }
 
     public Long getId() {
@@ -25,11 +38,11 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

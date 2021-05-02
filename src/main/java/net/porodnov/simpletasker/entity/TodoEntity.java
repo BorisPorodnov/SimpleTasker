@@ -3,17 +3,16 @@ package net.porodnov.simpletasker.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "todo_entity")
 public class TodoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
     private Boolean completed;
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_entity_id")
     private UserEntity user;
 
     public TodoEntity() {
